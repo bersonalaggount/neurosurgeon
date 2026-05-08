@@ -1,0 +1,98 @@
+/* components/ClinicSection.module.css */
+
+.clinic {
+  padding: 120px 0;
+  background: var(--off-white);
+  position: relative;
+}
+
+/* Hairline top border — elegant section separator */
+.clinic::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--stone), transparent);
+}
+
+/* Two-column layout */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 8px;
+}
+
+/* ── Body paragraphs ─────────────────────────────────────────── */
+.para {
+  font-size: 1rem;
+  color: var(--text-soft);
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.para:last-of-type {
+  margin-bottom: 28px;
+}
+
+/* ── Pillar cards column ─────────────────────────────────────── */
+.pillars {
+  display: flex;
+  flex-direction: column;
+}
+
+.pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--stone);
+  transition: background var(--transition);
+}
+
+.pillar:first-child {
+  border-top: 1px solid var(--stone);
+}
+
+/* Icon box */
+.pillarIcon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px; /* prevent shrinking */
+  background: var(--white);
+  border: 1px solid var(--warm-grey);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.pillarTitle {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.pillarDesc {
+  font-size: 0.88rem;
+  color: var(--mid-grey);
+  line-height: 1.6;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .clinic {
+    padding: 80px 0;
+  }
+}

@@ -1,0 +1,71 @@
+.appointment {
+  padding: 120px 0;
+  background: var(--warm-grey);
+}
+
+.wrapper {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.04);
+}
+
+.description {
+  color: var(--text-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputGroup label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+
+.inputGroup input,
+.inputGroup select {
+  padding: 14px 16px;
+  border: 1px solid var(--stone);
+  border-radius: var(--radius-sm);
+  background: var(--off-white);
+  font-size: 1rem;
+  color: var(--text);
+  transition: border-color var(--transition);
+}
+
+.inputGroup input:focus,
+.inputGroup select:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--white);
+}
+
+.submitBtn {
+  margin-top: 12px;
+  padding: 16px;
+  font-size: 1rem;
+}
+
+@media (max-width: 992px) {
+  .wrapper { grid-template-columns: 1fr; gap: 40px; padding: 40px; }
+}
+@media (max-width: 768px) {
+  .appointment { padding: 80px 0; }
+  .wrapper { padding: 24px; }
+}

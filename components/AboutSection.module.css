@@ -1,0 +1,158 @@
+/* components/AboutSection.module.css */
+
+.about {
+  padding: 120px 0;
+  background: var(--dark-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Large decorative watermark behind content */
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--serif);
+  font-size: 18vw;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.015);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Override gold label color — needs to be lighter on dark background */
+.label {
+  color: rgba(200, 169, 110, 0.7);
+}
+
+/* ── Two-column grid ─────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* ── Portrait column ─────────────────────────────────────────── */
+.portraitCol {
+  position: relative;
+}
+
+.portraitFrame {
+  width: 100%;
+  aspect-ratio: 3 / 4; /* portrait orientation */
+  background: linear-gradient(145deg, #252320, #1a1916);
+  border: 1px solid rgba(200, 169, 110, 0.25);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle radial glow inside the frame */
+.portraitFrame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(200, 169, 110, 0.08), transparent 70%);
+}
+
+/* Placeholder shown until a real photo is added */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: rgba(200, 169, 110, 0.5);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px;
+  position: relative; /* above the ::before glow */
+  z-index: 1;
+}
+
+/* Gold badge overlapping the portrait */
+.badge {
+  position: absolute;
+  bottom: -14px;
+  right: -14px;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  box-shadow: 0 8px 24px rgba(200, 169, 110, 0.3);
+}
+
+/* ── Bio column ──────────────────────────────────────────────── */
+.name {
+  margin-bottom: 24px;
+}
+
+.bio {
+  font-size: 0.98rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+/* ── Credentials grid ────────────────────────────────────────── */
+.credentials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px; /* 1px gap over a bg colour = dividing lines */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: 36px;
+}
+
+.credential {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 20px 24px;
+  transition: background var(--transition);
+}
+
+.credential:hover {
+  background: rgba(200, 169, 110, 0.08);
+}
+
+.credLabel {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+
+.credValue {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .portraitCol {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about { padding: 80px 0; }
+  .credentials { grid-template-columns: 1fr; }
+  .badge { bottom: -10px; right: -10px; }
+}

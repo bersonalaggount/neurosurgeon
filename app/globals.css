@@ -1,0 +1,244 @@
+/* ═══════════════════════════════════════════════════════════════
+   app/globals.css
+   
+   This is the ONE global stylesheet imported at the very top of
+   the app (in layout.jsx). Everything here applies site-wide.
+
+   We define:
+     1. CSS Custom Properties (design tokens / variables)
+     2. A CSS reset so browsers start from the same baseline
+     3. Base body / typography styles
+     4. Reusable utility classes
+     5. Keyframe animations
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 1. GOOGLE FONTS IMPORT ────────────────────────────────────
+   Cormorant Garamond → elegant serif for headings (feels medical-editorial)
+   DM Sans → clean, modern sans-serif for body text
+   ──────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+
+/* ── 2. CSS CUSTOM PROPERTIES (Design Tokens) ──────────────────
+   Think of these like variables in your code.
+   Instead of writing #C8A96E everywhere, you write var(--gold).
+   If you ever want to change the gold shade → change it HERE once.
+   ──────────────────────────────────────────────────────────── */
+:root {
+  /* ── Soothing Minimalist Luxury Palette ── */
+  --white:        #FFFFFF;
+  --off-white:    #F4F1EC;          /* Your calming alabaster base */
+  --warm-grey:    #EAE6DC;          /* Slightly darker for borders/depth */
+  --stone:        #D6D1C4;          /* Borders and subtle lines */
+  --mid-grey:     #8C9BAA;          /* Muted blue-grey for secondary text */
+  
+  /* Text and Backgrounds */
+  --text:         #1A3A5C;          /* Your Deep Blue for primary text */
+  --text-soft:    #3D5A7A;          /* Softer blue for paragraph reading */
+  --dark:         #0F253E;          /* Ultra-deep blue for the footer */
+  --dark-soft:    #1A3A5C;          /* Deep blue for the About section background */
+
+  /* Accents (Replacing the old gold) */
+  --gold:         #2A8C6E;          /* Your Emerald/Sea Green accent */
+  --gold-light:   #3CB08D;          /* Lighter green for button hovers */
+  --gold-dim:     #1E6E55;          /* Deeper green for text links */
+
+  /* Typography */
+  --serif:  'Cormorant Garamond', Georgia, serif;
+  --sans:   'DM Sans', sans-serif;
+
+  /* Border radii */
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+
+  /* Transitions */
+  --transition:      0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── 3. CSS RESET ───────────────────────────────────────────────
+   Browsers have their own default styles that differ from each
+   other. This reset zeros them all out so we start fresh.
+   ──────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;  /* padding/border included in element width */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* animated scrolling when clicking anchor links */
+}
+
+/* ── 4. BASE STYLES ─────────────────────────────────────────────
+   Applied to every page via the root layout.
+   ──────────────────────────────────────────────────────────── */
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;               /* prevent horizontal scroll */
+  -webkit-font-smoothing: antialiased; /* smoother text on Mac/iOS */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input, select, textarea, button {
+  font-family: var(--sans);         /* inputs don't inherit font by default */
+}
+
+/* ── 5. REUSABLE UTILITY CLASSES ────────────────────────────────
+   These classes can be applied to any element anywhere in the app.
+   ──────────────────────────────────────────────────────────── */
+
+/* Container: centred, max-width wrapper used in every section */
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Section label: the tiny all-caps gold text above headings */
+.section-label {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+
+/* Section title: the large serif heading */
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 4vw, 3.4rem); /* clamp = responsive font size */
+  font-weight: 300;
+  line-height: 1.12;
+  color: var(--text);
+  margin-bottom: 28px;
+}
+
+/* The italic part of a heading (e.g. "Precision <em>Care</em>") */
+.section-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold-dim);
+}
+
+/* Light variant — used on dark backgrounds */
+.section-title--light {
+  color: var(--white);
+}
+.section-title--light em {
+  color: var(--gold-light);
+}
+
+/* Underlined text link with arrow feel */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--gold-dim);
+  border-bottom: 1px solid var(--gold-light);
+  padding-bottom: 2px;
+  transition: color var(--transition), border-color var(--transition);
+}
+.text-link:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+/* ── 6. BUTTON STYLES ───────────────────────────────────────────
+   Two button variants: solid gold (primary) and outlined (ghost)
+   ──────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition);
+}
+
+.btn--primary {
+  background: var(--gold);
+  color: var(--dark);
+}
+.btn--primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(200, 169, 110, 0.35);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--stone);
+}
+.btn--ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold-dim);
+  transform: translateY(-2px);
+}
+
+.btn--full {
+  width: 100%;
+}
+
+/* ── 7. REVEAL ANIMATION ────────────────────────────────────────
+   Elements start hidden (opacity 0, slightly below).
+   JavaScript adds .visible when they scroll into view.
+   ──────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger delays — so child elements reveal one after another */
+.reveal--delay-1 { transition-delay: 0.15s; }
+.reveal--delay-2 { transition-delay: 0.30s; }
+.reveal--delay-3 { transition-delay: 0.45s; }
+
+/* ── 8. KEYFRAME ANIMATIONS ─────────────────────────────────── */
+
+/* The pulsing scroll indicator line in the Hero */
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(0.7); }
+}
+
+/* ── 9. RESPONSIVE ADJUSTMENTS ──────────────────────────────── */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+}
