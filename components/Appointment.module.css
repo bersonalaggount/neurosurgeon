@@ -52,7 +52,7 @@
 .inputGroup input:focus,
 .inputGroup select:focus {
   outline: none;
-  border-color: var(--gold);
+  border-color: var(--accent);
   background: var(--white);
 }
 

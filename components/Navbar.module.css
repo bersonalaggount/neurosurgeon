@@ -56,7 +56,7 @@
 .brandName {
   font-family: var(--serif);
   font-size: 1.15rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text);
 }
 
@@ -94,8 +94,8 @@
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.04em;
-  background: var(--gold);
-  color: var(--dark);
+  background: var(--accent);
+  color: var(--white);
   border: none;
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -104,7 +104,7 @@
 }
 
 .bookBtn:hover {
-  background: var(--gold-light);
+  background: var(--accent-light);
   transform: translateY(-1px);
 }
 
@@ -151,7 +151,7 @@
 }
 
 .mobileLink:last-child { border-bottom: none; }
-.mobileLink:hover { color: var(--gold-dim); }
+.mobileLink:hover { color: var(--accent-deep); }
 
 /* ── RESPONSIVE ────────────────────────────────────────────────── */
 @media (max-width: 768px) {
@@ -162,4 +162,64 @@
 
   /* Show hamburger on mobile */
   .hamburger { display: flex; }
+}
+
+/* ── Dark mode toggle ─────────────────────────────────────────── */
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--warm-grey);
+  border: 1px solid var(--stone);
+  cursor: pointer;
+  color: var(--text);
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.themeToggle:hover {
+  background: var(--accent-mist);
+  border-color: var(--accent);
+  color: var(--accent-deep);
+  transform: rotate(15deg);
+}
+
+/* Mobile dark mode button */
+.mobileThemeBtn {
+  margin-top: 16px;
+  padding: 12px 0;
+  background: none;
+  border: 1px solid var(--stone);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.mobileThemeBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent-deep);
+}
+
+/* ── Dark mode nav overrides ──────────────────────────────────── */
+:global([data-theme="dark"]) .nav {
+  background: rgba(15, 20, 25, 0.92);
+}
+
+:global([data-theme="dark"]) .scrolled {
+  border-bottom-color: #1e2730;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);
+}
+
+:global([data-theme="dark"]) .hamburger span {
+  background: #e8ecf0;
+}
+
+:global([data-theme="dark"]) .mobileMenu {
+  background: rgba(15, 20, 25, 0.98);
 }

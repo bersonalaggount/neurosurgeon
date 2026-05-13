@@ -39,16 +39,19 @@ import Footer          from '@/components/Footer';
 // the browser — faster initial page load, better SEO.
 export default function HomePage() {
   return (
-    // <main> is an HTML landmark element — good for accessibility
-    <main>
+    // Navbar is OUTSIDE <main> so the page-enter animation
+    // (which uses transform) doesn't break position:fixed.
+    <>
       <Navbar />
-      <Hero />
-      <ClinicSection />
-      <AboutSection />
-      <ServicesSection />
-      <Appointment />
-      <ContactSection />
-      <Footer />
-    </main>
+      <main>
+        <Hero />
+        <ClinicSection />
+        <AboutSection />
+        <ServicesSection />
+        <Appointment />
+        <ContactSection />
+        <Footer />
+      </main>
+    </>
   );
 }

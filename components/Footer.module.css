@@ -14,13 +14,13 @@
 .name {
   font-family: var(--serif);
   font-size: 1.8rem;
-  font-weight: 300;
+  font-weight: 500;
   margin-bottom: 4px;
 }
 
 .title {
   font-size: 0.8rem;
-  color: var(--gold);
+  color: var(--accent-light);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -37,7 +37,7 @@
 }
 
 .links a:hover {
-  color: var(--gold-light);
+  color: var(--accent-light);
 }
 
 .bottom {

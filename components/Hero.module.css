@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  padding: 130px 40px 80px;
+  padding: 120px 40px 80px;
   background: var(--white);
   overflow: hidden;
 }
@@ -14,153 +14,167 @@
 .bgGrid {
   position: absolute;
   inset: 0;
-  /* Two overlapping gradients create a dot/grid pattern */
   background-image:
     linear-gradient(var(--warm-grey) 1px, transparent 1px),
     linear-gradient(90deg, var(--warm-grey) 1px, transparent 1px);
   background-size: 60px 60px;
   opacity: 0.4;
-  pointer-events: none; /* clicks pass through to content */
-  will-change: transform; /* hint to browser for GPU acceleration */
+  pointer-events: none;
+  will-change: transform;
 }
 
-/* ── Overlay fades the grid in the center (makes text readable) ─ */
+/* ── Overlay ─────────────────────────────────────────────────── */
 .bgOverlay {
   position: absolute;
   inset: 0;
-  /* Uses your new Alabaster color with 85% opacity */
-  background: rgba(244, 241, 236, 0.85); 
-  z-index: 1; /* Ensures it sits above the image but below the text */
+  background: rgba(244, 241, 236, 0.88);
+  z-index: 1;
   pointer-events: none;
 }
 
-/* ── Two-column content grid ─────────────────────────────────── */
+/* ── Layout: photo left, info right ──────────────────────────── */
 .content {
   position: relative;
-  z-index: 2; /* above the grid/overlay */
+  z-index: 2;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-columns: 340px 1fr;
+  gap: 72px;
   align-items: center;
   width: 100%;
 }
 
-/* ── Left column ─────────────────────────────────────────────── */
-.left {
+/* ── Doctor photo ────────────────────────────────────────────── */
+.photoCol {
+  position: relative;
+}
+
+.photoFrame {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  border: 2px solid rgba(16, 185, 129, 0.2);
+  box-shadow:
+    0 24px 60px rgba(15, 37, 62, 0.12),
+    0 4px 16px rgba(15, 37, 62, 0.06);
+}
+
+/* ── Info column ─────────────────────────────────────────────── */
+.infoCol {
   display: flex;
   flex-direction: column;
 }
 
-.eyebrow {
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.eyebrowLine {
-  display: block;
-  width: 32px;
-  height: 1px;
-  background: var(--gold);
-  flex-shrink: 0;
-}
-
-.title {
+/* Doctor name — big, bold, no thinning */
+.name {
   font-family: var(--serif);
-  font-size: clamp(3rem, 6vw, 5.5rem);
-  font-weight: 300;
-  line-height: 1.05;
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.1;
   color: var(--text);
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
-.title em {
-  display: block;
-  font-style: italic;
-  color: var(--gold-dim);
+/* Qualifications line */
+.qualLine {
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent-deep);
+  margin-bottom: 8px;
 }
 
-.subtitle {
-  font-size: 1.05rem;
-  font-weight: 300;
+/* Location / title */
+.tagline {
+  font-size: 1rem;
+  font-weight: 400;
   color: var(--text-soft);
-  line-height: 1.7;
-  max-width: 460px;
+  margin-bottom: 36px;
+}
+
+/* ── Stats row ───────────────────────────────────────────────── */
+.statsRow {
+  display: flex;
+  align-items: center;
+  gap: 0;
   margin-bottom: 40px;
-}
-
-.actions {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-/* ── Right column ────────────────────────────────────────────── */
-.right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-/* Stats card */
-.card {
-  background: var(--white);
-  border: 1px solid var(--warm-grey);
-  border-radius: var(--radius-lg);
-  padding: 36px 40px;
-  box-shadow: 0 20px 80px rgba(0,0,0,0.07), 0 2px 8px rgba(0,0,0,0.04);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  padding: 20px 0;
+  border-top: 1px solid var(--warm-grey);
+  border-bottom: 1px solid var(--warm-grey);
 }
 
 .stat {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  flex: 1;
+  gap: 2px;
 }
 
 .statNum {
   font-family: var(--serif);
-  font-size: 2.6rem;
-  font-weight: 300;
+  font-size: 2.2rem;
+  font-weight: 700;
   color: var(--text);
   line-height: 1;
 }
 
 .statLabel {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 500;
   color: var(--mid-grey);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.divider {
-  height: 1px;
+.statDivider {
+  width: 1px;
+  height: 40px;
   background: var(--warm-grey);
+  flex-shrink: 0;
 }
 
-/* Available badge */
-.availableBadge {
+/* ── Book button — large, imposing ───────────────────────────── */
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.bookBtn {
+  padding: 18px 48px;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: 0 6px 24px rgba(16, 185, 129, 0.3);
+}
+
+.bookBtn:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(16, 185, 129, 0.4);
+}
+
+/* Available tag */
+.availTag {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: var(--off-white);
-  border: 1px solid var(--warm-grey);
-  border-radius: 100px;
-  padding: 10px 18px;
-  font-size: 0.8rem;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
   color: var(--text-soft);
 }
 
-/* Pulsing green dot */
 .dot {
   width: 8px;
   height: 8px;
@@ -195,6 +209,7 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--mid-grey);
+  font-weight: 500;
 }
 
 .scrollLine {
@@ -204,15 +219,60 @@
   animation: scrollPulse 2s ease-in-out infinite;
 }
 
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+  50%      { opacity: 1;   transform: scaleY(1);   }
+}
+
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .content { grid-template-columns: 1fr; gap: 48px; }
-  .right { width: 100%; }
+  .content {
+    grid-template-columns: 260px 1fr;
+    gap: 48px;
+  }
 }
 
 @media (max-width: 768px) {
   .hero { padding: 110px 24px 70px; }
-  .title { font-size: 3rem; }
-  .actions { flex-direction: column; }
+  .content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .photoCol {
+    max-width: 280px;
+  }
+  .name { font-size: 2.4rem; }
+  .statsRow { gap: 0; }
+  .bookBtn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   .scrollIndicator { display: none; }
+}
+
+/* ── Dark mode hero ──────────────────────────────────────────── */
+:global([data-theme="dark"]) .hero {
+  background: #0f1419;
+}
+
+:global([data-theme="dark"]) .bgOverlay {
+  background: rgba(15, 20, 25, 0.92);
+}
+
+:global([data-theme="dark"]) .bgGrid {
+  opacity: 0.15;
+}
+
+:global([data-theme="dark"]) .photoFrame {
+  border-color: rgba(52, 211, 153, 0.25);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+:global([data-theme="dark"]) .bookBtn {
+  box-shadow: 0 6px 24px rgba(52, 211, 153, 0.25);
 }
