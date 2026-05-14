@@ -1,6 +1,7 @@
 import { google } from 'googleapis';
 
 export async function POST(req) {
+  
   try {
     const body = await req.json();
 
@@ -30,10 +31,9 @@ export async function POST(req) {
 
     return Response.json({ success: true });
   } catch (error) {
-    console.error(error);
-
+    console.error('Appointment route error:', error?.message, error?.stack);
     return Response.json(
-      { error: 'Failed to submit appointment' },
+      { error: error?.message || 'Unknown error' },
       { status: 500 }
     );
   }
