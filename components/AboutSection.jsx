@@ -4,10 +4,9 @@ import useReveal from '@/hooks/useReveal';
 import styles from './AboutSection.module.css';
 
 const CREDENTIALS = [
-  { label:'Qualification',  value:'MS, MCh Neurosurgery'            },
+  { label:'Qualification',  value:'MS, MBBS, MCh Neurosurgery'            },
   { label:'Specialisation', value:'Brain, Spine & Peripheral Nerves' },
-  { label:'Location',       value:'Kochi, Kerala'                    },
-  { label:'Languages',      value:'English, Malayalam, Arabic'       },
+  { label:'Languages',      value:'English, Malayalam, Hindi'       },
 ];
 
 export default function AboutSection() {
@@ -16,7 +15,7 @@ export default function AboutSection() {
     <section className={styles.about} id="about">
       <div data-blob aria-hidden="true" style={{
         position:'absolute', bottom:'5%', right:'-60px',
-        width:320, height:320, background:'rgba(250, 255, 255, 0.1)', animationDelay:'-5s'
+        width:320, height:320, background:'rgba(12, 255, 255, 0.1)', animationDelay:'-5s'
       }}/>
       <div className={styles.watermark} aria-hidden="true">NEUROSURGERY</div>
       <div className="container">
@@ -26,7 +25,7 @@ export default function AboutSection() {
             <div className={styles.portraitFrame}>
               <Image src="/dr-muzammil.png" alt="Dr. Muzammil Ishaq, Consultant Neurosurgeon" fill style={{objectFit:'cover'}}/>
             </div>
-            <div className={styles.badge}>MCh Neurosurgery</div>
+            <div className={styles.badge}>Neurosurgery</div>
           </div>
           <div data-reveal="right" style={{'--rv-delay':'0.12s','--rv-dur':'0.9s'}} className={styles.bioCol}>
             <h2 className={`section-title section-title--light ${styles.name}`}>
@@ -42,8 +41,7 @@ export default function AboutSection() {
               neuro-oncology, and functional neurosurgery.
             </p>
             <p className={styles.bio}>
-              Based in Kochi, Kerala. Explains every diagnosis
-              and treatment option in clear, simple terms.
+              15+ years of experience coupled with 2500+ surgeries performed.
             </p>
             <div className={styles.credentials}>
               {CREDENTIALS.map((c) => (

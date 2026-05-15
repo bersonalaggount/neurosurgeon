@@ -1,153 +1,185 @@
 /* ═══════════════════════════════════════════════════════════════
-   app/globals.css
-   
-   This is the ONE global stylesheet imported at the very top of
-   the app (in layout.jsx). Everything here applies site-wide.
+   app/globals.css — Premium Neurosurgical Clinic Design System
    ═══════════════════════════════════════════════════════════════ */
 
-/* ── 1. GOOGLE FONTS IMPORT ──────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+/* ── 1. GOOGLE FONTS ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap');
 @import './animations.css';
 
-/* ── 2. CSS CUSTOM PROPERTIES (Design Tokens) ────────────────── */
+/* ── 2. DESIGN TOKENS ────────────────────────────────────────── */
 :root {
-  /* ── Soothing Minimalist Luxury Palette ── */
-  --white:        #ffffff;
-  --off-white:    #F4F1EC;          /* Your calming alabaster base */
-  --warm-grey:    #EAE6DC;          /* Slightly darker for borders/depth */
-  --stone:        #c4c6d6;          /* Borders and subtle lines */
-  --mid-grey:     #8C9BAA;          /* Muted blue-grey for secondary text */
-  
-  /* Text and Backgrounds */
-  --text:         #1A3A5C;          /* Your Deep Blue for primary text */
-  --text-soft:    #3D5A7A;          /* Softer blue for paragraph reading */
-  --dark:         #0F253E;          /* Ultra-deep blue for the footer */
-  --dark-soft:    #1A3A5C;          /* Deep blue for the About section background */
+  /* ── Deep Navy / Forest Green / Warm Ivory ── */
+  --white:        #FAFAF8;
+  --off-white:    #F2F0EB;
+  --warm-grey:    #E6E2D9;
+  --stone:        #C8C4BA;
+  --mid-grey:     #8A8778;
 
-  /* Accents — Emerald / Teal */
-  --accent:       #10b981;          /* Primary emerald */
-  --accent-light: #34d399;          /* Light emerald (hover states) */
-  --accent-deep:  #059669;          /* Deep emerald (emphasis text) */
-  --accent-mist:  rgba(16, 185, 129, 0.08); /* Tinted backgrounds */
+  /* Text & Background */
+  --text:         #0B1D33;
+  --text-soft:    #3B4F68;
+  --dark:         #06101E;
+  --dark-soft:    #0C1A2E;
+  --navy:         #0F1D32;
+  --line:         rgba(11, 29, 51, 0.08);
 
-  /* Legacy aliases — keep for any stray references */
+  /* Accents — Forest Green */
+  --accent:       #1B7A5A;
+  --accent-light: #2A9D6E;
+  --accent-deep:  #145C44;
+  --accent-mist:  rgba(27, 122, 90, 0.06);
+  --accent-glow:  rgba(27, 122, 90, 0.15);
+
+  /* Accents — Steel Blue (secondary) */
+  --blue:         #2E5A88;
+  --blue-light:   #3D7AB8;
+  --blue-deep:    #1E3D5C;
+  --blue-mist:    rgba(46, 90, 136, 0.06);
+
+  /* Legacy aliases */
   --gold:         var(--accent);
   --gold-light:   var(--accent-light);
   --gold-dim:     var(--accent-deep);
 
   /* Typography */
-  --serif:  'Sora', 'Inter', sans-serif;
-  --sans:   'Inter', 'Segoe UI', sans-serif;
+  --heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --serif:   'Plus Jakarta Sans', 'Inter', sans-serif;
+  --sans:    'Inter', 'Segoe UI', sans-serif;
 
   /* Border radii */
-  --radius-sm:  6px;
-  --radius-md:  12px;
-  --radius-lg:  20px;
+  --radius-xs:  4px;
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  22px;
+  --radius-xl:  32px;
+
+  /* Shadows */
+  --shadow-sm:   0 1px 2px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md:   0 4px 6px rgba(0,0,0,0.03), 0 12px 24px rgba(0,0,0,0.05);
+  --shadow-lg:   0 8px 16px rgba(0,0,0,0.04), 0 24px 56px rgba(0,0,0,0.08);
+  --shadow-xl:   0 12px 28px rgba(0,0,0,0.06), 0 40px 80px rgba(0,0,0,0.1);
+  --shadow-glow: 0 0 0 1px var(--accent-glow), 0 12px 40px var(--accent-glow);
+
+  /* Glass */
+  --glass-bg:    rgba(250, 250, 248, 0.72);
+  --glass-border: rgba(11, 29, 51, 0.06);
 
   /* Transitions */
-  --transition:      0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition:      0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  --spring:          0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ── 2b. DARK MODE OVERRIDES ─────────────────────────────────── */
+/* ── 2b. DARK MODE ───────────────────────────────────────────── */
 [data-theme="dark"] {
-  --white:        #0f1419;
-  --off-white:    #151b23;
-  --warm-grey:    #1e2730;
-  --stone:        #2a3640;
-  --mid-grey:     #7a8b9a;
+  --white:        #0B1220;
+  --off-white:    #0F1826;
+  --warm-grey:    #162030;
+  --stone:        #243348;
+  --mid-grey:     #6B7D94;
 
-  --text:         #e8ecf0;
-  --text-soft:    #a8b8c8;
-  --dark:         #0a0e13;
-  --dark-soft:    #121a24;
+  --text:         #E4E9F0;
+  --text-soft:    #9AACBF;
+  --dark:         #060C18;
+  --dark-soft:    #0A1320;
+  --navy:         #0A1320;
+  --line:         rgba(228, 233, 240, 0.06);
 
-  --accent:       #34d399;
-  --accent-light: #6ee7b7;
-  --accent-deep:  #34d399;
-  --accent-mist:  rgba(52, 211, 153, 0.1);
+  --accent:       #2A9D6E;
+  --accent-light: #3DC286;
+  --accent-deep:  #2A9D6E;
+  --accent-mist:  rgba(42, 157, 110, 0.08);
+  --accent-glow:  rgba(42, 157, 110, 0.12);
+
+  --blue:         #3D7AB8;
+  --blue-light:   #5A9AD4;
+  --blue-deep:    #3D7AB8;
+  --blue-mist:    rgba(61, 122, 184, 0.08);
+
+  --glass-bg:     rgba(11, 18, 32, 0.8);
+  --glass-border: rgba(228, 233, 240, 0.06);
+
+  --shadow-sm:   0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md:   0 4px 12px rgba(0,0,0,0.2), 0 12px 24px rgba(0,0,0,0.15);
+  --shadow-lg:   0 8px 24px rgba(0,0,0,0.25), 0 24px 56px rgba(0,0,0,0.2);
 }
 
 [data-theme="dark"] body {
-  background: #0f1419;
-  color: #e8ecf0;
+  background: #0B1220;
+  color: #E4E9F0;
 }
 
-/* ── 3. CSS RESET ─────────────────────────────────────────────── */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* ── 3. RESET ────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-html {
-  scroll-behavior: smooth; 
-}
-
-/* ── 4. BASE STYLES ───────────────────────────────────────────── */
+/* ── 4. BASE ─────────────────────────────────────────────────── */
 body {
   font-family: var(--sans);
   background: var(--white);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.65;
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+input, select, textarea, button { font-family: var(--sans); }
 
-img {
-  display: block;
-  max-width: 100%;
-}
-
-input, select, textarea, button {
-  font-family: var(--sans);
-}
-
-/* ── 5. REUSABLE UTILITY CLASSES ──────────────────────────────── */
+/* ── 5. LAYOUT UTILITIES ─────────────────────────────────────── */
 .container {
-  max-width: 1220px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 48px;
 }
 
 .section-label {
   font-family: var(--sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--accent-deep);
-  margin-bottom: 18px;
+  color: var(--accent);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-label::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
 }
 
 .section-title {
-  font-family: var(--serif);
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
-  font-weight: 700;
-  line-height: 1.12;
+  font-family: var(--heading);
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.1;
   color: var(--text);
-  margin-bottom: 28px;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
 }
 
 .section-title em {
   font-style: normal;
-  font-weight: 700;
-  color: var(--accent-deep);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.section-title--light {
-  color: var(--white);
-}
-
+.section-title--light { color: rgba(255,255,255,0.95); }
 .section-title--light em {
-  color: var(--accent-light);
+  background: linear-gradient(135deg, var(--accent-light) 0%, #5A9AD4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-style: normal;
 }
 
@@ -156,70 +188,91 @@ input, select, textarea, button {
   align-items: center;
   gap: 6px;
   font-size: 0.88rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--accent-deep);
-  border-bottom: 1px solid rgba(16, 185, 129, 0.3);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  border-bottom: 1.5px solid var(--accent-glow);
   padding-bottom: 2px;
-  transition: color var(--transition), border-color var(--transition);
+  transition: color var(--transition), border-color var(--transition), gap var(--transition);
 }
 
 .text-link:hover {
-  color: var(--accent);
+  color: var(--accent-deep);
   border-color: var(--accent);
+  gap: 10px;
 }
 
-/* ── 6. BUTTON STYLES ─────────────────────────────────────────── */
+/* ── 6. BUTTONS ──────────────────────────────────────────────── */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   padding: 14px 32px;
   font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   border-radius: var(--radius-sm);
   cursor: pointer;
   border: none;
   transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .btn--primary {
-  background: var(--accent);
-  color: var(--white);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px var(--accent-glow);
 }
 
 .btn--primary:hover {
-  background: var(--accent-light);
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 8px 28px rgba(27, 122, 90, 0.3);
 }
 
 .btn--ghost {
   background: transparent;
   color: var(--text);
-  border: 1px solid var(--stone);
+  border: 1.5px solid var(--stone);
 }
 
 .btn--ghost:hover {
   border-color: var(--accent);
-  color: var(--accent-deep);
-  transform: translateY(-2px);
+  color: var(--accent);
+  background: var(--accent-mist);
+  transform: translateY(-1px);
 }
 
-.btn--full {
-  width: 100%;
+.btn--full { width: 100%; }
+
+/* ── 7. GLASS CARD ───────────────────────────────────────────── */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
 }
 
+/* ── 8. GRADIENT MESH BG ─────────────────────────────────────── */
+.mesh-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%, var(--accent-mist) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, var(--blue-mist) 0%, transparent 70%);
+}
 
-
-/* ── 9. RESPONSIVE ADJUSTMENTS ──────────────────────────────── */
+/* ── 9. RESPONSIVE ───────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .container {
-    padding: 0 24px;
-  }
-  .section-title {
-    font-size: 2rem;
-  }
+  .container { padding: 0 24px; }
+  .section-title { font-size: 1.8rem; }
+}
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .section-title { font-size: 1.6rem; }
+  .btn { width: 100%; justify-content: center; }
 }

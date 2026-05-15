@@ -39,11 +39,6 @@ export default function RootLayout({ children }) {
     // lang="en" helps screen readers and search engines
     <html lang="en">
       <body>
-        {/*
-          {children} gets replaced by the actual page component.
-          Right now we only have one page (app/page.jsx), so
-          children will always be the homepage.
-        */}
         {children}
       </body>
     </html>

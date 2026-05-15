@@ -15,17 +15,32 @@ import { useEffect } from 'react';
    KEY FIX: The transition is declared on the HIDDEN state, not the
    visible state. This gives the browser time to parse the transition
    BEFORE the class change, preventing instant snapping.
+
+   HMR FIX: All singleton checks use DOM queries (not module-level
+   booleans) so they survive hot module replacement correctly.
    ═══════════════════════════════════════════════════════════════ */
 
-let _observer = null;
-let _scrollHandler = null;
-let _styleInjected = false;
-let _barCreated = false;
-let _mountCount = 0;
+// We store the observer and scroll handler on the window object
+// so they persist across HMR module re-evaluations.
+const GLOBAL_KEY = '__useReveal';
+
+function getGlobals() {
+  if (typeof window === 'undefined') return null;
+  if (!window[GLOBAL_KEY]) {
+    window[GLOBAL_KEY] = {
+      observer: null,
+      scrollHandler: null,
+      mountCount: 0,
+    };
+  }
+  return window[GLOBAL_KEY];
+}
 
 function injectStyles() {
-  if (typeof document === 'undefined' || _styleInjected) return;
-  _styleInjected = true;
+  if (typeof document === 'undefined') return;
+
+  // Check the DOM, not a module-level boolean — survives HMR.
+  if (document.getElementById('__reveal-styles')) return;
 
   const style = document.createElement('style');
   style.id = '__reveal-styles';
@@ -213,9 +228,11 @@ function injectStyles() {
 }
 
 function getOrCreateObserver() {
-  if (_observer) return _observer;
+  const g = getGlobals();
+  if (!g) return null;
+  if (g.observer) return g.observer;
 
-  _observer = new IntersectionObserver(
+  g.observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -227,27 +244,29 @@ function getOrCreateObserver() {
               entry.target.classList.add('is-visible');
             });
           });
-          _observer.unobserve(entry.target);
+          g.observer.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
   );
 
-  return _observer;
+  return g.observer;
 }
 
 function observeNewElements() {
   const observer = getOrCreateObserver();
+  if (!observer) return;
   document.querySelectorAll('[data-reveal]:not(.is-visible)').forEach((el) => {
     observer.observe(el);
   });
 }
 
 function setupScrollProgress() {
-  if (_barCreated) return;
-  _barCreated = true;
+  const g = getGlobals();
+  if (!g) return;
 
+  // Check the DOM for existing bar — survives HMR.
   let bar = document.getElementById('__scroll-progress');
   if (!bar) {
     bar = document.createElement('div');
@@ -255,17 +274,24 @@ function setupScrollProgress() {
     document.body.prepend(bar);
   }
 
-  _scrollHandler = () => {
+  // Only add listener if we don't already have one
+  if (g.scrollHandler) return;
+
+  g.scrollHandler = () => {
     const total = document.body.scrollHeight - window.innerHeight;
     if (total <= 0) return;
-    bar.style.width = `${Math.min((window.scrollY / total) * 100, 100)}%`;
+    const el = document.getElementById('__scroll-progress');
+    if (el) el.style.width = `${Math.min((window.scrollY / total) * 100, 100)}%`;
   };
-  window.addEventListener('scroll', _scrollHandler, { passive: true });
+  window.addEventListener('scroll', g.scrollHandler, { passive: true });
 }
 
 export default function useReveal() {
   useEffect(() => {
-    _mountCount++;
+    const g = getGlobals();
+    if (!g) return;
+
+    g.mountCount++;
     injectStyles();
     setupScrollProgress();
 
@@ -277,20 +303,21 @@ export default function useReveal() {
 
     return () => {
       clearTimeout(timerId);
-      _mountCount--;
+      g.mountCount--;
 
       // Only tear down global resources when ALL components unmount
-      if (_mountCount <= 0) {
-        _mountCount = 0;
-        if (_observer) {
-          _observer.disconnect();
-          _observer = null;
+      if (g.mountCount <= 0) {
+        g.mountCount = 0;
+        if (g.observer) {
+          g.observer.disconnect();
+          g.observer = null;
         }
-        if (_scrollHandler) {
-          window.removeEventListener('scroll', _scrollHandler);
-          _scrollHandler = null;
-          _barCreated = false;
+        if (g.scrollHandler) {
+          window.removeEventListener('scroll', g.scrollHandler);
+          g.scrollHandler = null;
         }
+        // Don't remove the style tag — it might be needed if
+        // components re-mount (e.g. during navigation)
       }
     };
   }, []);
