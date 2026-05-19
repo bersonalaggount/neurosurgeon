@@ -55,7 +55,7 @@ export default function Navbar() {
 
         {/* Brand */}
         <a href="#home" className={styles.brand} onClick={(e) => handleNavClick(e, '#home')}>
-          <Image src="/logo.png" alt="Dr. Muzammil Ishaq Logo" width={180} height={50}
+          <Image src="/logo.png" alt="Dr. Jagath Lal Gangadharan Logo" width={180} height={50}
             style={{ objectFit: 'contain' }} priority />
         </a>
 

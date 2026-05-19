@@ -22,10 +22,10 @@ import './globals.css'; // ← Import global styles ONCE here (not in every comp
 // <title> and <meta description> tags in the <head> of every page.
 // Great for SEO without writing any HTML.
 export const metadata = {
-  title: 'Dr. Muzammil Ishaq — Neurosurgeon, Kochi',
+  title: 'Dr. Jagath Lal Gangadharan — Neurosurgeon',
   description:
-    'Neurosurgeon in Kochi, Kerala. Brain surgery, spine surgery, neurotrauma, pain management. MS, MCh. 15+ years, 2500+ surgeries.',
-  keywords: 'neurosurgeon kochi, brain surgeon kerala, spine surgery kochi, dr muzammil ishaq',
+    'HOD & Senior Consultant - Neurosurgery at Rajagiri Hospital. 18+ years experience, 2000+ complex neurosurgical cases.',
+  keywords: 'neurosurgeon, brain surgeon, spine surgery, dr jagath lal gangadharan, rajagiri hospital',
 };
 
 // ─── ROOT LAYOUT COMPONENT ───────────────────────────────────────

@@ -40,7 +40,7 @@ export default function ClinicSection() {
               e.preventDefault();
               const el=document.getElementById('about');
               if(el) window.scrollTo({top:el.offsetTop-80,behavior:'smooth'});
-            }}>About Dr. Ishaq →</a>
+            }}>About Dr. Gangadharan →</a>
           </div>
           <div data-reveal="right" style={{'--rv-delay':'0.14s','--rv-dur':'0.85s'}} className={styles.pillars}>
             {PILLARS.map((p) => (

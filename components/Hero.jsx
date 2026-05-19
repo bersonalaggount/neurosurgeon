@@ -23,7 +23,7 @@ export default function Hero() {
     document.querySelectorAll('[data-counter]').forEach((el) => {
       const target = parseInt(el.getAttribute('data-counter'), 10);
       const suffix = el.getAttribute('data-suffix') || '';
-      const step   = Math.ceil(target / (1800 / 16));
+      const step = Math.ceil(target / (1800 / 16));
 
       const obs = new IntersectionObserver((entries) => {
         if (!entries[0].isIntersecting) return;
@@ -66,7 +66,7 @@ export default function Hero() {
         {/* Doctor photo */}
         <div data-reveal="left" style={{ '--rv-dur': '0.9s' }} className={styles.photoCol}>
           <div className={styles.photoFrame}>
-            <Image src="/dr-muzammil.png" alt="Dr. Muzammil Ishaq" fill style={{objectFit:'cover'}} />
+            <Image src="/dr-muzammil.png" alt="Dr. Muzammil Ishaq" fill style={{ objectFit: 'cover' }} />
           </div>
         </div>
 
@@ -74,7 +74,7 @@ export default function Hero() {
         <div className={styles.infoCol}>
 
           <h1 data-reveal="up" style={{ '--rv-delay': '0s' }} className={styles.name}>
-            Dr. Muzammil Ishaq
+            Dr. Jagath Lal Gangadharan
           </h1>
 
           <div data-reveal="up" style={{ '--rv-delay': '0.08s' }} className={styles.qualLine}>
@@ -82,18 +82,18 @@ export default function Hero() {
           </div>
 
           <p data-reveal="up" style={{ '--rv-delay': '0.15s' }} className={styles.tagline}>
-            Consultant Neurosurgeon — Kochi, Kerala
+            HOD & Senior Consultant Neurosurgeon, Rajagiri Hospital, Kochi
           </p>
 
           {/* Stats row */}
           <div data-reveal="up" style={{ '--rv-delay': '0.22s' }} className={styles.statsRow}>
             <div className={styles.stat}>
-              <span className={styles.statNum} data-counter="15" data-suffix="+">0+</span>
+              <span className={styles.statNum} data-counter="20" data-suffix="+">0+</span>
               <span className={styles.statLabel}>Years</span>
             </div>
             <div className={styles.statDivider} />
             <div className={styles.stat}>
-              <span className={styles.statNum} data-counter="2500" data-suffix="+">0+</span>
+              <span className={styles.statNum} data-counter="2000" data-suffix="+">0+</span>
               <span className={styles.statLabel}>Surgeries</span>
             </div>
             <div className={styles.statDivider} />

@@ -4,9 +4,9 @@ import useReveal from '@/hooks/useReveal';
 import styles from './AboutSection.module.css';
 
 const CREDENTIALS = [
-  { label:'Qualification',  value:'MS, MBBS, MCh Neurosurgery'            },
-  { label:'Specialisation', value:'Brain, Spine & Peripheral Nerves' },
-  { label:'Languages',      value:'English, Malayalam, Hindi'       },
+  { label:'Qualification',  value:'MBBS, MS, DNB, MCh, FACS, FRCS' },
+  { label:'Specialisation', value:'Brain, Spine & Skull Base Surgery' },
+  { label:'Experience',     value:'18+ Years' },
 ];
 
 export default function AboutSection() {
@@ -23,25 +23,22 @@ export default function AboutSection() {
         <div className={styles.grid}>
           <div data-reveal="left" style={{'--rv-dur':'0.9s'}} className={styles.portraitCol}>
             <div className={styles.portraitFrame}>
-              <Image src="/dr-muzammil.png" alt="Dr. Muzammil Ishaq, Consultant Neurosurgeon" fill style={{objectFit:'cover'}}/>
+              <Image src="/dr-muzammil.png" alt="Dr. Jagath Lal Gangadharan, Consultant Neurosurgeon" fill style={{objectFit:'cover'}}/>
             </div>
             <div className={styles.badge}>Neurosurgery</div>
           </div>
           <div data-reveal="right" style={{'--rv-delay':'0.12s','--rv-dur':'0.9s'}} className={styles.bioCol}>
             <h2 className={`section-title section-title--light ${styles.name}`}>
-              Dr. Muzammil Ishaq<br /><em>MS, MCh (Neurosurgery)</em>
+              Dr. Jagath Lal Gangadharan<br /><em>MBBS, MS, DNB, MCh, FACS, FRCS</em>
             </h2>
             <p className={styles.bio}>
-              MS in General Surgery. MCh in Neurosurgery.
-              Operates on conditions affecting the brain, spine,
-              and peripheral nervous system.
+              Trained in Brain and Spine surgery at NIMHANS, Bangalore. Further trained in minimally invasive neurosurgery and Skull base surgery at Weill Cornell Medical College, New York; Head injury at University of Washington, Seattle; Brain tumor surgery at University of Regensburg, Germany and Endovascular neurosurgery at G.B.Pant Hospital, New Delhi.
             </p>
             <p className={styles.bio}>
-              Additional training in minimally invasive spine surgery,
-              neuro-oncology, and functional neurosurgery.
+              Independently operated more than 2000 complex neurosurgical cases. Expert in Gamma knife Radiosurgery, endoscopic neurosurgery for pituitary tumors, neuro-oncology, reconstructive surgery for craniofacial trauma, functional neurosurgery, neurovascular surgery and minimally invasive spine surgery.
             </p>
             <p className={styles.bio}>
-              15+ years of experience coupled with 2500+ surgeries performed.
+              An exceptionally talented Neurosurgeon with more than 18 years of experience.
             </p>
             <div className={styles.credentials}>
               {CREDENTIALS.map((c) => (

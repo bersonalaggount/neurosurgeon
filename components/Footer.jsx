@@ -8,8 +8,8 @@ export default function Footer() {
       <div className={`container ${styles.inner}`}>
         
         <div className={styles.brand}>
-          <h2 className={styles.name}>Dr. Muzammil Ishaq</h2>
-          <p className={styles.title}>Consultant Neurosurgeon</p>
+          <h2 className={styles.name}>Dr. Jagath Lal Gangadharan</h2>
+          <p className={styles.title}>Senior Consultant Neurosurgery</p>
         </div>
 
         <div className={styles.links}>
@@ -23,7 +23,7 @@ export default function Footer() {
       
       <div className={styles.bottom}>
         <div className="container">
-          <p>© {new Date().getFullYear()} Dr. Muzammil Ishaq. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Dr. Jagath Lal Gangadharan. All rights reserved.</p>
         </div>
       </div>
     </footer>
